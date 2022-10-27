@@ -103,6 +103,19 @@ database_structure.update({
         )) for z in factors_return_list
 })
 
+# factors delinear test ic lib
+factors_delinear_test_ic_list = ["factors_delinear_test_ic.{}.{}.TW{:03d}.T{}".format(p, nm, tw, l)
+                                 for p, nm, tw, l in ittl.product(factors_pool_options.keys(), neutral_method_list, test_window_list, factors_return_lag_list)]
+database_structure.update({
+    z: CLib1Tab1(
+        t_lib_name=z + ".db",
+        t_tab=CTable(
+            t_table_name=z.split(".")[0],
+            t_primary_keys={"trade_date": "TEXT", "factor": "TEXT"},
+            t_value_columns={"value": "REAL"},
+        )) for z in factors_delinear_test_ic_list
+})
+
 # instrument residual lib
 instrument_residual_list = ["instruments_residual.{}.{}.TW{:03d}.T{}".format(p, nm, tw, l)
                             for p, nm, tw, l in ittl.product(factors_pool_options.keys(), neutral_method_list, test_window_list, factors_return_lag_list)]
@@ -122,7 +135,7 @@ factors_portfolio_list = ["factors_portfolio.{}.{}.TW{:03d}.T{}".format(p, nm, t
 for z in factors_portfolio_list:
     # selected sectors list
     mother_universe = instruments_universe_options[universe_id]
-    sector_set = {sector_classification[u] for u in mother_universe}  # this set may be a subset of sectors_list
+    sector_set = {sector_classification[u] for u in mother_universe}  # this set may be a subset of sectors_list and in random order
     selected_sectors_list = [z for z in sectors_list if z in sector_set]  # sort sector set by sectors list order
 
     # selected factors pool

@@ -43,7 +43,7 @@ mother_universe_df = pd.DataFrame({"instrument": mother_universe})
 
 # --- load sector df
 sector_df = pd.DataFrame.from_dict({z: {sector_classification[z]: 1} for z in mother_universe}, orient="index").fillna(0)
-selected_sectors_list = [z for z in sectors_list if z in sector_df.columns.to_list()]  # sector_df.columns may be subset of sector_list
+selected_sectors_list = [z for z in sectors_list if z in sector_df.columns.to_list()]  # sector_df.columns may be a subset of sector_list and in random order
 sector_df["MARKET"] = 1.00
 
 # --- regression labels
@@ -154,12 +154,10 @@ for trade_date in trade_calendar.get_iter_list(t_bgn_date=factors_pool_bgn_date,
         t_using_index=True,
     )
 
-# close all
+# close all libs
 factors_return_lib.close()
 factors_portfolio_lib.close()
 instruments_residual_lib.close()
-
-#
 available_universe_lib.close()
 delinear_lib.close()
 test_return_lib.close()

@@ -37,6 +37,7 @@ factors_return_dir = os.path.join(project_data_dir, "factors_return")
 factors_return_agg_dir = os.path.join(project_data_dir, "factors_return_agg")
 instruments_residual_dir = os.path.join(project_data_dir, "instruments_residual")
 instruments_residual_agg_dir = os.path.join(project_data_dir, "instruments_residual_agg")
+factors_delinear_test_ic_dir = os.path.join(project_data_dir, "factors_delinear_test_ic")
 
 if __name__ == "__main__":
     check_and_mkdir(project_data_dir)
@@ -56,6 +57,7 @@ if __name__ == "__main__":
     check_and_mkdir(factors_return_agg_dir)
     check_and_mkdir(instruments_residual_dir)
     check_and_mkdir(instruments_residual_agg_dir)
+    check_and_mkdir(factors_delinear_test_ic_dir)
 
 # --- database settings
 DATABASE = os.path.join("/Database")

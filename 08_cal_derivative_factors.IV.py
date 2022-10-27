@@ -26,8 +26,6 @@ instruments_residual_df = instruments_residual_lib.read(
 instruments_residual_agg_df = pd.pivot_table(data=instruments_residual_df, index="trade_date", columns="instrument", values="value", aggfunc=sum)
 all_factor_df = instruments_residual_agg_df.rolling(window=test_window * k_iv).std()
 
-print(all_factor_df)
-
 factor_lib.save_factor_by_date(
     t_table_name=database_structure[factor_lbl].m_tab.m_table_name,
     t_all_factor_df=all_factor_df,
@@ -37,4 +35,4 @@ factor_lib.save_factor_by_date(
 instruments_residual_lib.close()
 factor_lib.close()
 
-print("| {} | factor = {:>12s} calculated | ".format(dt.datetime.now(), factor_lbl))
+print("... {} factor = {:>12s} calculated\n".format(dt.datetime.now(), factor_lbl))

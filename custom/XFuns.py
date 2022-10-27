@@ -259,15 +259,27 @@ def fun_for_normalize_delinear(t_pid_list: list, t_neutral_method_list: list):
     return 0
 
 
+def fun_for_factors_delinear_test_ic(t_pid_list: list, t_neutral_method_list: list, t_test_window_list: list, t_factors_return_lag_list: list):
+    for pid, neutral_method, test_window, factors_return_lag in product(t_pid_list, t_neutral_method_list, t_test_window_list, t_factors_return_lag_list):
+        subprocess.run(["python", "06_factors_delinear_test_ic.py", pid, neutral_method, str(test_window), str(factors_return_lag)])
+    return 0
+
+
 def fun_for_factors_return(t_pid_list: list, t_neutral_method_list: list, t_test_window_list: list, t_factors_return_lag_list: list):
     for pid, neutral_method, test_window, factors_return_lag in product(t_pid_list, t_neutral_method_list, t_test_window_list, t_factors_return_lag_list):
-        subprocess.run(["python", "06_factors_return.py", pid, neutral_method, str(test_window), str(factors_return_lag)])
+        subprocess.run(["python", "07_factors_return.py", pid, neutral_method, str(test_window), str(factors_return_lag)])
     return 0
 
 
 def fun_for_factors_return_agg(t_pid_list: list, t_neutral_method_list: list, t_test_window_list: list, t_factors_return_lag_list: list):
     for pid, neutral_method, test_window, factors_return_lag in product(t_pid_list, t_neutral_method_list, t_test_window_list, t_factors_return_lag_list):
         subprocess.run(["python", "07_factors_return_agg.py", pid, neutral_method, str(test_window), str(factors_return_lag)])
+    return 0
+
+
+def fun_for_derivative_factors_IV(t_pid_list: list, t_neutral_method_list: list, t_test_window_list: list, t_factors_return_lag_list: list):
+    for pid, neutral_method, test_window, factors_return_lag in product(t_pid_list, t_neutral_method_list, t_test_window_list, t_factors_return_lag_list):
+        subprocess.run(["python", "08_cal_derivative_factors.IV.py", pid, neutral_method, str(test_window), str(factors_return_lag)])
     return 0
 
 

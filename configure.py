@@ -211,7 +211,9 @@ universe_id = "U46"
 
 # --- factors pool ---
 factors_pool_options = {
-    "P3": ["BASIS147", "RSW252HL063", "CTP063", "CSP189", "CVP063", "MTM231", "SKEW010", "TS126", "BETA063", "SIZE126", "TO126"],
+    "P3": ["BASIS147", "CSP189", "CTP063",
+           "SKEW010", "MTM231", "RSW252HL063",
+           "SIZE126", "CVP063", "TS126", "TO126", "BETA063"],
 }
 
 # neutral methods

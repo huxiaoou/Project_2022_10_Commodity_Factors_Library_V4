@@ -123,6 +123,7 @@ for trade_date in trade_calendar.get_iter_list(t_bgn_date=factors_pool_bgn_date,
     )
 
 # --- close libs
+available_universe_lib.close()
 norm_lib.close()
 delinear_lib.close()
 for raw_factor_lib in raw_factor_libs_manager.values():

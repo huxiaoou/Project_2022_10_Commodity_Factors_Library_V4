@@ -10,8 +10,6 @@ from skyrim.falkreath import CManagerLibWriterByDate
 
 print("... {} available universe calculating".format(dt.datetime.now()))
 
-cne_calendar = CCalendar(t_path=SKYRIM_CONST_CALENDAR_PATH)
-
 # --- initialize lib
 available_universe_lib_structure = database_structure["available_universe"]
 available_universe_lib = CManagerLibWriterByDate(t_db_name=available_universe_lib_structure.m_lib_name, t_db_save_dir=available_universe_dir)

@@ -6,18 +6,27 @@ from custom.XFuns import fun_for_factors_return, fun_for_factors_return_agg
 from custom.XFuns import fun_for_derivative_factors_IV
 
 switch = {
+    # 03 ---
     "factor": False,
     "factor_neutral": False,
 
+    # 04 ---
     "test_ic": False,
+    "test_ic_plot": False,
     "test_ic_neutral": False,
+    "test_ic_neutral_plot": False,
 
+    # 05 ---
     "factors_delinear": False,
+
+    # 06 ---
     "factors_delinear_test_ic": False,
 
+    # 07 ---
     "factors_return": False,
 
-    "derivative_factors": True,
+    # 08 ---
+    "derivative_factors": False,
 
 }
 
@@ -40,6 +49,8 @@ if switch["test_ic"]:
     for t in join_list:
         t.join()
 
+if switch["test_ic_plot"]:
+    target_factor_list = factors_list
     for factor in target_factor_list:
         subprocess.run(["python", "04_B_factor_test_ic_plot.py", factor])
 
@@ -55,6 +66,9 @@ if switch["test_ic_neutral"]:
     for t in join_list:
         t.join()
 
+if switch["test_ic_neutral_plot"]:
+    target_factor_list = factors_list
+    target_neutral_method_list = neutral_method_list
     for factor, uid in product(target_factor_list, target_neutral_method_list):
         subprocess.run(["python", "04_B_factor_test_neutral_ic_plot.py", factor, uid])
 

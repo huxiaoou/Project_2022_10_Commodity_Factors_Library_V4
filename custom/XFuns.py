@@ -201,7 +201,7 @@ def cal_risk_factor_return_colinear(t_r: np.ndarray, t_x: np.ndarray, t_instru_w
     :param t_r: n x 1, n: number of instruments
     :param t_x: n x K, K = 1 + k, k = p + q; p = number of sectors; q = number of style factors; 1 = market; K: number of all risk factors
     :param t_instru_wgt: n x 1, weight (market value) for each instrument
-    :param t_sector_wgt: k x 1, weight (market value) of each sector
+    :param t_sector_wgt: p x 1, weight (market value) of each sector
     :return:
     """
     _n, _K = t_x.shape
@@ -214,8 +214,8 @@ def cal_risk_factor_return_colinear(t_r: np.ndarray, t_x: np.ndarray, t_instru_w
     _R21 = np.zeros(shape=(_q, _p))
     _R22 = np.diag(np.ones(_q))
     _R = np.vstack((np.hstack((_R11, _R12)), np.hstack((_R21, _R22))))  # (p + q + 1) x (p + q) = K x (K - 1)
-    v = np.sqrt(t_instru_wgt)
-    v = np.diag(v / np.sum(v))  # n x n
+    _v_raw = np.sqrt(t_instru_wgt)
+    _v = np.diag(_v_raw / np.sum(_v_raw))  # n x n
 
     #
     # Omega = R((XR)'VXR)^{-1} (XR)'V # size = K x n
@@ -224,8 +224,8 @@ def cal_risk_factor_return_colinear(t_r: np.ndarray, t_x: np.ndarray, t_instru_w
     # Omega *XR = R
 
     _XR = t_x.dot(_R)  # n x (K-1)
-    _P = _XR.T.dot(v).dot(_XR)  # (K-1) x (K-1)
-    _Omega = _R.dot(np.linalg.inv(_P).dot(_XR.T.dot(v)))  # K x n
+    _P = _XR.T.dot(_v).dot(_XR)  # (K-1) x (K-1)
+    _Omega = _R.dot(np.linalg.inv(_P).dot(_XR.T.dot(_v)))  # K x n
     _f = _Omega.dot(t_r)  # K x 1
     return _f, _Omega
 

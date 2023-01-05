@@ -6,7 +6,7 @@ created @ 2022-10-17
 """
 
 # md_bgn_date, md_stp_date = "20140101", (dt.datetime.now() + dt.timedelta(days=1)).strftime("%Y%m%d")
-md_bgn_date, md_stp_date = "20140101", "20221206"
+md_bgn_date, md_stp_date = "20140101", "20230103"
 factors_bgn_date, factors_stp_date = "20150401", md_stp_date
 factors_pool_bgn_date, factors_pool_stp_date = "20150801", md_stp_date
 
